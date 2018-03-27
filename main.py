@@ -6,6 +6,9 @@ Lucas Churchman
 
 import xml.etree.ElementTree as ET
 import urllib2
+import datetime
+from lxml import etree
+
 
 def downloadXML():
     '''
@@ -22,32 +25,51 @@ def downloadXML():
         f.write(contents)
         f.close()
 
+    tree = etree.XML(contents)
+
 def parseTree(xmlfile):
 
-    #Create tree from XML. Get root of element.
-    tree = ET.parse(xmlfile)
-    root = tree.getroot()
+    tree = etree.parse(xmlfile)
 
-    #create empty list for our listings
-    MyListings = []
+    MlsId = tree.xpath('//MlsId/text()')
+    MlsName = tree.xpath('//MlsName/text()')
+    DateListed = tree.xpath('//DateListed/text()')
+    StreeAddresse = tree.xpath('//StreetAddress/text()')
+    Price = tree.xpath('//Price/text()')
+    Bedrooms = tree.xpath('//Bedrooms/text()')
+    Bathrooms = tree.xpath('//Bathrooms/text()')
 
-    #Pulls all relevant data from ListingDetails branch
-    for ListingDetails in root.findall('./Listing/ListingDetails'):
 
-        details = {}
-
-        for child in ListingDetails:
-            if child.tag == 'MlsId':
-                details['MlsId'] = child.text
-            if child.tag == 'MlsName':
-                details['MlsName'] = child.text
-        print(details)
-        MyListings.append(details)
-
-    print(MyListings)
 
 if __name__ == "__main__":
-    # downloadXML()
+    downloadXML()
     parseTree('listings.xml')
 
 
+#
+# def parseTree(xmlfile):
+#
+#     #Create tree from XML. Get root of element.
+#     tree = ET.parse(xmlfile)
+#     root = tree.getroot()
+#
+#     #create empty list for our listings
+#     MyListings = []
+#
+#     for listing in root.findall('Listing'):
+#
+#         details = {}
+#         for infoCategory in listing:
+#             print infoCategory.tag
+#
+#
+#
+#     MyListings.append(details)
+#
+#     print(MyListings)
+#
+# if __name__ == "__main__":
+#     downloadXML()
+#     parseTree('listings.xml')
+#
+#
