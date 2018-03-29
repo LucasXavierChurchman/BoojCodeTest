@@ -1,0 +1,2 @@
+-Since the Bathroom field was empty for all of the listing, I made a new 'Total Bathrooms' columns calculated from the 'FullBathrooms' and 'HalfBathrooms' columns
+-You can specify which year of listings you want to look at with an argument in my cleanTable() method for added modularity
