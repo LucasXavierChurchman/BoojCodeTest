@@ -148,6 +148,7 @@ def saveCSV(df):
     #Save the csv
     filename = 'listings_{}.csv'.format(now)
     df.to_csv(filename)
+    print('{} saved'.format(filename))
 
 if __name__ == "__main__":
     downloadXML(url = 'http://syndication.enterprise.websiteidx.com/feeds/BoojCodeTest.xml')

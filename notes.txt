@@ -8,4 +8,4 @@
 
 -Checks for 'and' in description field after shortening to 200 characters
 
--CSV saved with timestamp in file name
+-CSV saved with timestamp in file name to indicate when it was generated
